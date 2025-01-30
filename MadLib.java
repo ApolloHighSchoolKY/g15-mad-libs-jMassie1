@@ -39,37 +39,36 @@ public class MadLib
 
 			//Read the different parts of the story and concatenate the resulting
 			//story using the symbols to tell you the parts of speech
-			Scanner reader = new Scanner(new File("story.dat"));
+			Scanner reader = new Scanner(new File(fileName));
 
-			while(reader.hasNext())
-			{
-				story += reader.hasNext();
-			}
+			String stoory = reader.next();
+			reader.close();
 
 			
-			String unchanged = "";
+			
 			//While there is more of the story, read in the word/symbol
-			Scanner replacer = new Scanner(unchanged);
+			Scanner replacer = new Scanner(stoory);
 
 			while(replacer.hasNext())
 			{
-				String wordReplacer = replacer.next();
+				String part = replacer.next();
 				//If what was read in is one of the symbols, find a random
 				//word to replace it.
-				if(wordReplacer.equals("#")){
-					story += getRandomNoun() + "";
+				if(part.equals("#")){
+					story += getRandomNoun() + " ";
 				}
 				else if(wordReplacer.equals("@")){
-					story += getRandomVerb() + "";
+					story += getRandomVerb() + " ";
 				}
 				else if(wordReplacer.equals("&")){
-					story += getRandomAdjective() + "";
+					story += getRandomAdjective() + " ";
 				}
 				else {
-					story += wordReplacer + "";
+					story += wordReplacer + " ";
 				}
 					
 			}
+			story += "."
 			replacer.close();
 
 
