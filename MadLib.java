@@ -57,18 +57,18 @@ public class MadLib
 				if(part.equals("#")){
 					story += getRandomNoun() + " ";
 				}
-				else if(wordReplacer.equals("@")){
+				else if(part.equals("@")){
 					story += getRandomVerb() + " ";
 				}
-				else if(wordReplacer.equals("&")){
+				else if(part.equals("&")){
 					story += getRandomAdjective() + " ";
 				}
 				else {
-					story += wordReplacer + " ";
+					story += part + " ";
 				}
 					
 			}
-			story += "."
+			story += ".";
 			replacer.close();
 
 
