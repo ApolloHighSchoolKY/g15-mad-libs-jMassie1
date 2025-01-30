@@ -41,7 +41,7 @@ public class MadLib
 			//story using the symbols to tell you the parts of speech
 			Scanner reader = new Scanner(new File(fileName));
 
-			String stoory = reader.next();
+			String stoory = reader.nextLine();
 			reader.close();
 
 			
