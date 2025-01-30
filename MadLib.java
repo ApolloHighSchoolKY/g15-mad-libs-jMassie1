@@ -1,4 +1,4 @@
-//© A+ Computer Science  -  www.apluscompsci.com
+//ï¿½ A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
 //Class -
@@ -20,24 +20,57 @@ public class MadLib
 
 	public MadLib()
 	{
-
+		verbs.add("punched");
+		nouns.add("Wal-mart");
+		adjectives.add("massive");
+		story = "I punched Wal-mart in a massive way. ";
 	}
 
 	public MadLib(String fileName)
 	{
 		//load stuff
+		loadNouns();
+		loadAdjectives();
+		loadVerbs();
 
+		
 		try
 		{
+
 			//Read the different parts of the story and concatenate the resulting
 			//story using the symbols to tell you the parts of speech
+			Scanner reader = new Scanner(new File("story.dat"));
 
+			while(reader.hasNext())
+			{
+				story += reader.hasNext();
+			}
 
+			
+			String unchanged = "";
 			//While there is more of the story, read in the word/symbol
+			Scanner replacer = new Scanner(unchanged);
 
+			while(replacer.hasNext())
+			{
+				String wordReplacer = replacer.next();
 				//If what was read in is one of the symbols, find a random
 				//word to replace it.
+				if(wordReplacer.equals("#")){
+					story += getRandomNoun() + "";
+				}
+				else if(wordReplacer.equals("@")){
+					story += getRandomVerb() + "";
+				}
+				else if(wordReplacer.equals("&")){
+					story += getRandomAdjective() + "";
+				}
+				else {
+					story += wordReplacer + "";
+				}
+					
 			}
+			replacer.close();
 
 
 		}
@@ -52,7 +85,12 @@ public class MadLib
 	{
 		try
 		{
+			Scanner reader = new Scanner(new File("nouns.dat"));
 
+			while(reader.hasNext())
+			{
+				nouns.add(reader.next());
+			}
 		}
 		catch(Exception e)
 		{
@@ -65,7 +103,12 @@ public class MadLib
 	{
 		try
 		{
+			Scanner reader = new Scanner(new File("verbs.dat"));
 
+			while(reader.hasNext())
+			{
+				verbs.add(reader.next());
+			}
 		}
 		catch(Exception e)
 		{
@@ -77,7 +120,12 @@ public class MadLib
 	{
 		try
 		{
+			Scanner reader = new Scanner(new File("adjectives.dat"));
 
+			while(reader.hasNext())
+			{
+				adjectives.add(reader.next());
+			}
 		}
 		catch(Exception e)
 		{
@@ -87,21 +135,32 @@ public class MadLib
 
 	public String getRandomVerb()
 	{
-		return "";
+		int spot = (int)(Math.random()*verbs.size());
+		
+		return "" + verbs.get(spot);
+		/* Random rand = new Random();
+
+		return "" + verbs.get(rand.nextInt(verbs.size())); */
 	}
 
 	public String getRandomNoun()
 	{
-		return "";
+		Random rand = new Random();
+
+		return "" + nouns.get(rand.nextInt(nouns.size()));
 	}
 
 	public String getRandomAdjective()
 	{
-		return "";
+		Random rand = new Random();
+
+		return "" + adjectives.get(rand.nextInt(adjectives.size()));
 	}
 
 	public String toString()
 	{
-		return "";
+		return "" + story;
 	}
+
+	
 }
